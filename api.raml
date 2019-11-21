@@ -6,6 +6,14 @@ protocols: HTTPS
 mediaType: application/json
 
 types:
+## Listar profesor ##
+  ProfesorListadoResponseDTO:
+    type: object
+    properties:
+      nombre: string
+      especialidad: string
+      anosExperiencia: integer
+## Registro Cursos ##
   CursoRegistroRequestDTO:
     type: object
     properties:
@@ -13,9 +21,46 @@ types:
       costo: number
       fechaInicio: date-only
       fechaFin: date-only
-
-
+      turno:
+        enum: [1, 2, 3]
+        type: integer
+        description: |
+          1: mañana
+          2: tarde
+          3: noche
+      lugar: string
+      profesor: ProfesorListadoResponseDTO
+  CursoRegistroResponseDTO:
+    type: object
+    properties:
+      id: integer
+      codigoRespuesta: string
+      mensajeRespuesta: string
+## Actualización Cursos ##
+  CursoActualizacionRequestDTO:
+    type: object
+    properties:
+      id: integer
+      descripcion: string
+      costo: number
+      fechaInicio: date-only
+      fechaFin: date-only
+      turno:
+        enum: [1, 2, 3]
+        type: integer
+        description: |
+          1: mañana
+          2: tarde
+          3: noche
+      lugar: string
+      profesor: ProfesorListadoResponseDTO
+  CursoActualizacionResponseDTO:
+    type: object
+    properties:
+      codigoRespuesta: string
+      mensajeRespuesta: string
 /cursos:
+  description: API para manejar los cursos libres de CCLP
   post:
     description: Se registra un nuevo curso libre
     body:
@@ -23,8 +68,59 @@ types:
         type: CursoRegistroRequestDTO
         example: |
           {
-            "descripcion": "mate",
+            "descripcion": "Serruchando el Piso",
             "costo": 420,
             "fechaInicio": "2020-01-15",
-            "fechaFin": "2020-05-15"
+            "fechaFin": "2020-05-15",
+            "turno": 2,
+            "lugar": "La casa de cachi",
+            "profesor":
+              {
+                "nombre": "El gran Bratzon",
+                "especialidad": "Serruchar",
+                "anosExperiencia": 4
+              }
           }
+    responses:
+      201:
+        body:
+          application/json:
+            type: CursoRegistroResponseDTO
+            example: |
+              {
+                "id": 1,
+                "codigoRespuesta": "01",
+                "mensajeRespuesta": "Okis"
+              }
+  put:
+    description: |
+      Se actualiza un curso existente en base a su ID
+    body:
+      application/json:
+        type: CursoActualizacionRequestDTO
+        example: |
+          {
+            "id": 1,
+            "descripcion": "Serruchando a Cachi",
+            "costo": 300,
+            "fechaInicio": "2019-11-30",
+            "fechaFin": "2020-01-30",
+            "turno": 3,
+            "lugar": "La casa de cachi",
+            "profesor":
+              {
+                "nombre": "El gran Bratzon",
+                "especialidad": "Serruchar",
+                "anosExperiencia": 4
+              }
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            type: CursoActualizacionResponseDTO
+            example: |
+              {
+                "codigoRespuesta": "01",
+                "mensajeRespuesta": "Okis"
+              }
