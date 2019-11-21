@@ -1,0 +1,30 @@
+#%RAML 1.0
+title: Cursos Libres
+version: v1
+baseUri: api/v1/
+protocols: HTTPS
+mediaType: application/json
+
+types:
+  CursoRegistroRequestDTO:
+    type: object
+    properties:
+      descripcion: string
+      costo: number
+      fechaInicio: date-only
+      fechaFin: date-only
+
+
+/cursos:
+  post:
+    description: Se registra un nuevo curso libre
+    body:
+      application/json:
+        type: CursoRegistroRequestDTO
+        example: |
+          {
+            "descripcion": "mate",
+            "costo": 420,
+            "fechaInicio": "2020-01-15",
+            "fechaFin": "2020-05-15"
+          }
