@@ -6,7 +6,7 @@ protocols: HTTPS
 mediaType: application/json
 
 types:
-## Listar profesor ##
+## Listar profesor [comodin] ##
   ProfesorListadoResponseDTO:
     type: object
     properties:
@@ -59,8 +59,56 @@ types:
     properties:
       codigoRespuesta: string
       mensajeRespuesta: string
+## Listar Todos los Cursos de un alumno ##
+  CursoListarResponseDTO:
+    type: object
+    properties:
+      id: integer
+      descripcion: string
+      costo: number
+      fechaInicio: date-only
+      fechaFin: date-only
+      turno: string
+      lugar: string
+      profesor: ProfesorListadoResponseDTO
+  CursoListadoResponseDTO:
+    type: object
+    properties:
+      cursos: CursoListarResponseDTO[]
+
+## Registro Alumnos ##
+  AlumnoRegistroRequestDTO:
+    type: object
+    properties:
+      nombres: string
+      apellidos: string
+      edad: integer
+      telefono: string
+      dni: string
+      correo: string
+      direccion: string
+  AlumnoRegistroResponseDTO:
+    type: object
+    properties:
+      id: integer
+      codigoAlumno: string
+      contrasena: string
+      codigoRespuesta: string
+      mensajeRespuesta: string
+## Actualización Alumnos ##
+  AlumnoActualizacionRequestDTO:
+    type: object
+    properties:
+      id: integer
+      contrasena: string
+  AlumnoActualizacionResponseDTO:
+    type: object
+    properties:
+      codigoRespuesta: string
+      mensajeRespuesta: string
+
 /cursos:
-  description: API para manejar los cursos libres de CCLP
+  description: API para administrar los cursos libres de CCLP
   post:
     description: Se registra un nuevo curso libre
     body:
@@ -124,3 +172,99 @@ types:
                 "codigoRespuesta": "01",
                 "mensajeRespuesta": "Okis"
               }
+  /{codigo-alumno}:
+    get:
+      description: |
+        Obtiene todos los cursos en los que un alumno está matriculado
+      responses:
+        200:
+          body:
+            application/json:
+              type: CursoListadoResponseDTO
+              example: |
+                {
+                  "cursos":
+                    [
+                      {
+                        "id": 1,
+                        "descripcion": "Serruchando el Piso",
+                        "costo": 420,
+                        "fechaInicio": "2020-01-15",
+                        "fechaFin": "2020-05-15",
+                        "turno": "Tarde",
+                        "lugar": "La casa de cachi",
+                        "profesor":
+                          {
+                            "nombre": "El gran Bratzon",
+                            "especialidad": "Serruchar",
+                            "anosExperiencia": 4
+                          }
+                      },
+                      {
+                        "id": 2,
+                        "descripcion": "El Kamasutra",
+                        "costo": 620,
+                        "fechaInicio": "2019-12-01",
+                        "fechaFin": "2019-12-15",
+                        "turno": "Noche",
+                        "lugar": "La casa de cachi",
+                        "profesor":
+                          {
+                            "nombre": "El gran Bratzon",
+                            "especialidad": "Serruchar",
+                            "anosExperiencia": 4
+                          }
+                      }
+                    ]
+                }
+/alumnos:
+  description: API para administrar los alumnos de CCLP
+  post:
+    description: Se registra un nuevo alumno para CCLP
+    body:
+      application/json:
+        type: AlumnoRegistroRequestDTO
+        example: |
+          {
+            "nombres": "Juan Carlos",
+            "apellidos": "Castillo Aycachi",
+            "edad": 26,
+            "telefono": "979666355",
+            "dni": "70555913",
+            "correo": "carlosjordi@hotmail.com",
+            "direccion": "Las Margaritas Mz XXX Lt 69"
+          }
+    responses:
+      201:
+        body:
+          application/json:
+            type: AlumnoRegistroResponseDTO
+            example: |
+              {
+                "id": 1,
+                "codigoAlumno": "C19C0001",
+                "contrasena": "C70555913A",
+                "codigoRespuesta": "01",
+                "mensajeRespuesta": "Okis"
+              }
+  put:
+    description: Se actualiza la contrasena de un alumno
+    body:
+      application/json:
+        type: AlumnoActualizacionRequestDTO
+        example: |
+          {
+            "id": 1,
+            "contrasena": "CachiWnReacciona"
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            type: AlumnoActualizacionResponseDTO
+            example: |
+              {
+                "codigoRespuesta": "01",
+                "mensajeRespuesta": "Okis"
+              }
+  
