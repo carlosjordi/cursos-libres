@@ -65,16 +65,33 @@ types:
     properties:
       id: integer
       descripcion: string
-      costo: number
-      fechaInicio: date-only
-      fechaFin: date-only
       turno: string
       lugar: string
       profesor: ProfesorListadoResponseDTO
   CursoListadoPorAlumnoResponseDTO:
     type: object
     properties:
+      codigoRespuesta: string
+      mensajeRespuesta: string
       cursos: CursoListarPorAlumnoResponseDTO[]
+## Listar todos los cursos ##
+  CursoListarResponseDTO:
+    type: object
+    properties:
+      id: integer
+      descripcion: string
+      costo: number
+      fechaInicio: date-only
+      fechaFin: date-only
+      turno: string
+      lugar: string
+      profesor: ProfesorListadoResponseDTO
+  CursoListadoResponseDTO:
+    type: object
+    properties:
+      codigoRespuesta: string
+      mensajeRespuesta: string
+      cursos: CursoListarResponseDTO[]
 
 ## Registro Alumnos ##
   AlumnoRegistroRequestDTO:
@@ -118,6 +135,25 @@ types:
     type: object
     properties:
       alumnos: AlumnoListarPorCursoResponseDTO[]
+## Listar todos los alumnos ##
+  AlumnoListarResponseDTO:
+    type: object
+    properties:
+      id: integer
+      codigoAlumno: string
+      nombres: string
+      apellidos: string
+      edad: integer
+      telefono: string
+      dni: string
+      correo: string
+      direccion: string
+  AlumnoListadoResponseDTO:
+    type: object
+    properties:
+      codigoRespuesta: string
+      mensajeRespuesta: string
+      alumnos: AlumnoListarResponseDTO[]
 
 ## Matricular alumno a un curso ##
   InscripcionRegistroRequestDTO:
@@ -226,14 +262,13 @@ types:
               type: CursoListadoPorAlumnoResponseDTO
               example: |
                 {
+                  "codigoRespuesta": "01",
+                  "mensajeRespuesta": "Okis",
                   "cursos":
                     [
                       {
                         "id": 1,
                         "descripcion": "Serruchando el Piso",
-                        "costo": 420,
-                        "fechaInicio": "2020-01-15",
-                        "fechaFin": "2020-05-15",
                         "turno": "Tarde",
                         "lugar": "La casa de cachi",
                         "profesor":
@@ -246,9 +281,6 @@ types:
                       {
                         "id": 2,
                         "descripcion": "El Kamasutra",
-                        "costo": 620,
-                        "fechaInicio": "2019-12-01",
-                        "fechaFin": "2019-12-15",
                         "turno": "Noche",
                         "lugar": "La casa de cachi",
                         "profesor":
@@ -260,6 +292,66 @@ types:
                       }
                     ]
                 }
+  get:
+    description: Obtiene todos los cursos libres de CCLP
+    responses:
+      200:
+        body:
+          application/json:
+            type: CursoListadoResponseDTO
+            example: |
+              {
+              "codigoRespuesta": "01",
+              "mensajeRespuesta": "Okis",
+              "cursos":
+                [
+                  {
+                    "id": 1,
+                    "descripcion": "Serruchando el Piso",
+                    "costo": 420,
+                    "fechaInicio": "2020-01-15",
+                    "fechaFin": "2020-05-15",
+                    "turno": "Tarde",
+                    "lugar": "La casa de cachi",
+                    "profesor":
+                      {
+                        "nombre": "El gran Bratzon",
+                        "especialidad": "Serruchar",
+                        "anosExperiencia": 4
+                      }
+                  },
+                  {
+                    "id": 2,
+                    "descripcion": "El Kamasutra",
+                    "costo": 620,
+                    "fechaInicio": "2019-12-01",
+                    "fechaFin": "2019-12-15",
+                    "turno": "Noche",
+                    "lugar": "La casa de cachi",
+                    "profesor":
+                      {
+                        "nombre": "El gran Bratzon",
+                        "especialidad": "Serruchar",
+                        "anosExperiencia": 4
+                      }
+                  },
+                  {
+                    "id": 3,
+                    "descripcion": "El Salto del Tigre",
+                    "costo": 220,
+                    "fechaInicio": "2019-12-10",
+                    "fechaFin": "2019-12-17",
+                    "turno": "Noche",
+                    "lugar": "La casa de cachi",
+                    "profesor":
+                      {
+                        "nombre": "El gran Bratzon",
+                        "especialidad": "Serruchar",
+                        "anosExperiencia": 4
+                      }
+                  }
+                ]
+              }
 /alumnos:
   description: Recurso para administrar los alumnos de CCLP
   post:
@@ -349,6 +441,75 @@ types:
                       }
                     ]
                 }
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: AlumnoListadoResponseDTO
+            example: |
+              {
+                "codigoRespuesta": "01",
+                "mensajeRespuesta": "Okis",
+                "alumnos":
+                  [
+                    {
+                      "id": 1,
+                      "codigoAlumno": "C19C0001",
+                      "nombres": "Juan Carlos",
+                      "apellidos": "Castillo Aycachi",
+                      "edad": 26,
+                      "telefono": "979666355",
+                      "dni": "70555913",
+                      "correo": "carlosjordi@hotmail.com",
+                      "direccion": "Las Margaritas Mz XXX Lt 69"
+                    },
+                    {
+                      "id": 2,
+                      "codigoAlumno": "C19C0002",
+                      "nombres": "Max Anthony",
+                      "apellidos": "Cachi Ayala",
+                      "edad": 20,
+                      "telefono": "999888777",
+                      "dni": "70707070",
+                      "correo": "anthonyca18m@gmail.com",
+                      "direccion": "Comas City altura de San Pincho"
+                    },
+                    {
+                      "id": 3,
+                      "codigoAlumno": "C19L0003",
+                      "nombres": "Gustavo Adolfo",
+                      "apellidos": "Lizarzaburu Mercado",
+                      "edad": 23,
+                      "telefono": "929193965",
+                      "dni": "96855263",
+                      "correo": "glizarzaburu@gmail.com",
+                      "direccion": "Al costado de melani"
+                    },
+                    {
+                      "id": 4,
+                      "codigoAlumno": "C19P0004",
+                      "nombres": "El Bratzon Hilser",
+                      "apellidos": "Serrucho Bada",
+                      "edad": 99,
+                      "telefono": "915152367",
+                      "dni": "69696969",
+                      "correo": "serruchador@profesional.pe",
+                      "direccion": "La casa de melani"
+                    },
+                    {
+                      "id": 5,
+                      "codigoAlumno": "C19C0005",
+                      "nombres": "Guti",
+                      "apellidos": "Carreta",
+                      "edad": 69,
+                      "telefono": "926357482",
+                      "dni": "88888888",
+                      "correo": "elgutiton@de.guti.pe",
+                      "direccion": "Los hoyos Nro.69"
+                    }
+                  ]
+              }
 /inscripciones:
   description: Recurso para administrar las inscripciones a CCLP
   post:
