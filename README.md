@@ -1,4 +1,5 @@
 # Cursos Libres
+[Modelado del proyecto](https://carlosjordi.github.io/cursos-libres/)
 
 ## Cursos
 - [x] Registro
