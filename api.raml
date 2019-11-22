@@ -59,8 +59,8 @@ types:
     properties:
       codigoRespuesta: string
       mensajeRespuesta: string
-## Listar Todos los Cursos de un alumno ##
-  CursoListarResponseDTO:
+## Listar todos los cursos de un alumno ##
+  CursoListarPorAlumnoResponseDTO:
     type: object
     properties:
       id: integer
@@ -71,10 +71,10 @@ types:
       turno: string
       lugar: string
       profesor: ProfesorListadoResponseDTO
-  CursoListadoResponseDTO:
+  CursoListadoPorAlumnoResponseDTO:
     type: object
     properties:
-      cursos: CursoListarResponseDTO[]
+      cursos: CursoListarPorAlumnoResponseDTO[]
 
 ## Registro Alumnos ##
   AlumnoRegistroRequestDTO:
@@ -106,9 +106,52 @@ types:
     properties:
       codigoRespuesta: string
       mensajeRespuesta: string
+## Listar todos los alumnos de un curso ##
+  AlumnoListarPorCursoResponseDTO:
+    type: object
+    properties:
+      id: integer
+      codigoAlumno: string
+      nombres: string
+      apellidos: string
+  AlumnoListadoPorCursoResponseDTO:
+    type: object
+    properties:
+      alumnos: AlumnoListarPorCursoResponseDTO[]
+
+## Matricular alumno a un curso ##
+  InscripcionRegistroRequestDTO:
+    type: object
+    properties:
+      idCurso: integer
+      idAlumno: integer
+  InscripcionRegistroResponseDTO:
+    type: object
+    properties:
+      fechaInscripcion: date-only
+      estado: string
+      codigoRespuesta: string
+      mensajeRespuesta: string
+## Retirando alumno de un curso ##
+  InscripcionRetiroRequestDTO:
+    type: object
+    properties:
+      idAlumno: integer
+      idCurso: integer
+      estado:
+        enum: [1, 2]
+        type: integer
+        description: |
+          1: inscrito
+          2: retirado
+  InscripcionRetiroResponseDTO:
+    type: object
+    properties:
+      codigoRespuesta: string
+      mensajeRespuesta: string
 
 /cursos:
-  description: API para administrar los cursos libres de CCLP
+  description: Recurso para administrar los cursos libres de CCLP
   post:
     description: Se registra un nuevo curso libre
     body:
@@ -180,7 +223,7 @@ types:
         200:
           body:
             application/json:
-              type: CursoListadoResponseDTO
+              type: CursoListadoPorAlumnoResponseDTO
               example: |
                 {
                   "cursos":
@@ -218,7 +261,7 @@ types:
                     ]
                 }
 /alumnos:
-  description: API para administrar los alumnos de CCLP
+  description: Recurso para administrar los alumnos de CCLP
   post:
     description: Se registra un nuevo alumno para CCLP
     body:
@@ -267,4 +310,89 @@ types:
                 "codigoRespuesta": "01",
                 "mensajeRespuesta": "Okis"
               }
-  
+  /{codigo-curso}:
+    get:
+      description: |
+        Obtiene todos los alumnos matriculados en un mismo curso
+      responses:
+        200:
+          body:
+            application/json:
+              type: AlumnoListadoPorCursoResponseDTO
+              example: |
+                {
+                  "alumnos":
+                    [
+                      {
+                        "id": 1,
+                        "codigoAlumno": "C19C0001",
+                        "nombres": "Juan Carlos",
+                        "apellidos": "Castillo Aycachi"
+                      },
+                      {
+                        "id": 2,
+                        "codigoAlumno": "C19C0002",
+                        "nombres": "Max Anthony",
+                        "apellidos": "Cachi Ayala"
+                      },
+                      {
+                        "id": 3,
+                        "codigoAlumno": "C19L0003",
+                        "nombres": "Gustavo Adolfo",
+                        "apellidos": "Lizarzaburu Mercado"
+                      },
+                      {
+                        "id": 4,
+                        "codigoAlumno": "C19P0004",
+                        "nombres": "El Bratzon Hilser",
+                        "apellidos": "Serrucho Bada"
+                      }
+                    ]
+                }
+/inscripciones:
+  description: Recurso para administrar las inscripciones a CCLP
+  post:
+    description: |
+      Inscribiendo un alumno a algún curso de CCLP
+    body:
+      application/json:
+        type: InscripcionRegistroRequestDTO
+        example: |
+          {
+            "idAlumno": 1,
+            "idCurso": 1
+          }
+    responses:
+      201:
+        body:
+          application/json:
+            type: InscripcionRegistroResponseDTO
+            example: |
+              {
+                "fechaInscripcion": "2019-11-22",
+                "estado": "inscrito",
+                "codigoRespuesta": "01",
+                "mensajeRespuesta": "Okis"
+              }
+  put:
+    description: |
+      Retirando a un alumno de un curso CCLP
+    body:
+      application/json:
+        type: InscripcionRetiroRequestDTO
+        example: |
+          {
+            "idCurso": 1,
+            "idAlumno": 1,
+            "estado": 2
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            type: InscripcionRetiroResponseDTO
+            example: |
+              {
+                "codigoRespuesta": "01",
+                "mensajeRespuesta": "Okis"
+              }
