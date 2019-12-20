@@ -19,6 +19,7 @@ types:
     properties:
       descripcion: string
       costo: number
+      vacantes: integer
       fechaInicio: date-only
       fechaFin: date-only
       turno:
@@ -43,6 +44,8 @@ types:
       id: integer
       descripcion: string
       costo: number
+      vacantes: integer
+      vacantesActuales: integer
       fechaInicio: date-only
       fechaFin: date-only
       turno:
@@ -81,11 +84,14 @@ types:
       id: integer
       descripcion: string
       costo: number
+      vacantes: integer
+      vacantesActuales: integer
       fechaInicio: date-only
       fechaFin: date-only
       turno: string
       lugar: string
       profesor: ProfesorListadoResponseDTO
+      fechaRegistro: string
   CursoListadoResponseDTO:
     type: object
     properties:
@@ -186,6 +192,32 @@ types:
       codigoRespuesta: string
       mensajeRespuesta: string
 
+## Registrar Profesor ##
+  ProfesorRegistroRequestDTO:
+    type: object
+    properties:
+      nombre: string
+      apellidos: string
+      dni: string
+      especialidad: string
+      anoExperiencia: integer
+  ProfesorRegistroResponseDTO:
+    type: object
+    properties:
+      codigoRespuesta: string,
+      mensajeRespuesta: string
+
+  ProfesorActualizarRequestDTO:
+    type: object
+    properties:
+      idProfesor: integer
+      passProfesor: string
+  ProfesorActualizarResponseDTO:
+    type: object
+    properties:
+      codigoRespuesta: string
+      mensajeRespuesta: string
+
 /cursos:
   description: Recurso para administrar los cursos libres de CCLP
   post:
@@ -197,6 +229,7 @@ types:
           {
             "descripcion": "Serruchando el Piso",
             "costo": 420,
+            "vacantes": 50,
             "fechaInicio": "2020-01-15",
             "fechaFin": "2020-05-15",
             "turno": 2,
@@ -206,7 +239,7 @@ types:
                 "nombre": "El gran Bratzon",
                 "especialidad": "Serruchar",
                 "anosExperiencia": 4
-              }
+              },
           }
     responses:
       201:
@@ -230,6 +263,8 @@ types:
             "id": 1,
             "descripcion": "Serruchando a Cachi",
             "costo": 300,
+            "vacantes": 40,
+            "vacantesActuales": 10,
             "fechaInicio": "2019-11-30",
             "fechaFin": "2020-01-30",
             "turno": 3,
@@ -309,6 +344,8 @@ types:
                     "id": 1,
                     "descripcion": "Serruchando el Piso",
                     "costo": 420,
+                    "vacantes": 50,
+                    "vacantesActuales": 0
                     "fechaInicio": "2020-01-15",
                     "fechaFin": "2020-05-15",
                     "turno": "Tarde",
@@ -318,12 +355,15 @@ types:
                         "nombre": "El gran Bratzon",
                         "especialidad": "Serruchar",
                         "anosExperiencia": 4
-                      }
+                      },
+                    "fechaRegistro": "10/10/2019"
                   },
                   {
                     "id": 2,
                     "descripcion": "El Kamasutra",
                     "costo": 620,
+                    "vacantes": 40,
+                    "vacantesActuales": 10
                     "fechaInicio": "2019-12-01",
                     "fechaFin": "2019-12-15",
                     "turno": "Noche",
@@ -333,12 +373,15 @@ types:
                         "nombre": "El gran Bratzon",
                         "especialidad": "Serruchar",
                         "anosExperiencia": 4
-                      }
+                      },
+                    "fechaRegistro": "10/11/2019"
                   },
                   {
                     "id": 3,
                     "descripcion": "El Salto del Tigre",
                     "costo": 220,
+                    "vacantes": 100,
+                    "vacantesActuales": 50,
                     "fechaInicio": "2019-12-10",
                     "fechaFin": "2019-12-17",
                     "turno": "Noche",
@@ -348,7 +391,8 @@ types:
                         "nombre": "El gran Bratzon",
                         "especialidad": "Serruchar",
                         "anosExperiencia": 4
-                      }
+                      },
+                    "fechaRegistro": "12/12/2019"
                   }
                 ]
               }
@@ -557,3 +601,49 @@ types:
                 "codigoRespuesta": "01",
                 "mensajeRespuesta": "Okis"
               }
+/profesor:
+  description: API para administrar profesores
+  post:
+    description: Se registra un profesor para CL
+    body:
+      application/json:
+        type: ProfesorRegistroRequestDTO
+        example: |
+          {
+           "nombre": "Zopi",
+           "apellidos": "abacilar",
+           "dni": "12345678",
+           "especialidad": "ARQUITECTURA DE SOFTWARE",
+           "anosExperiencia": 1
+          }
+  responses:
+    201:
+      body:
+        application/json:
+          type: ProfesorRegistroResponseDTO
+          example: |
+           {
+            "codigoRespuesta": "01",
+            "mensajeRespuesta": "Okis"
+           }
+
+  put:
+    description: Para actualizar Profesor de CL
+    body:
+      application/json:
+        type: ProfesorActualizarRequestDTO
+        example: |
+          {
+            "idProfesor": 1,
+            "passProfesor": "latiayotiteamaWN"
+          }
+   responses:
+     200:
+       body:
+         application/json:
+           type: ProfesorActualizarResponseDTO
+            example: |
+             {
+              "codigoRespuesta": "01",
+              "mensajeRespuesta": "Okis"
+             }
