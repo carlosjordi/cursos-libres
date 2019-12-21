@@ -2,6 +2,11 @@ package pe.edu.idat.rest.view.dto.request;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class AlumnoRegistroRequestDTO implements Serializable {
 	/**
 	 * 

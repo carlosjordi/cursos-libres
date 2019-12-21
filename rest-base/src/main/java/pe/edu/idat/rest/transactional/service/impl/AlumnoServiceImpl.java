@@ -1,16 +1,15 @@
 package pe.edu.idat.rest.transactional.service.impl;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.idat.rest.persistence.domain.Alumno;
 import pe.edu.idat.rest.persistence.repository.AlumnoRepository;
 import pe.edu.idat.rest.transactional.service.AlumnoService;
 import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
-import pe.edu.idat.rest.view.exception.DemoException;
 
 @Transactional
 @Service("AlumnoService")

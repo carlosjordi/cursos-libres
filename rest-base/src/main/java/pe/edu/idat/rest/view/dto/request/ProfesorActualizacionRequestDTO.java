@@ -2,6 +2,10 @@ package pe.edu.idat.rest.view.dto.request;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class ProfesorActualizacionRequestDTO implements Serializable {
 
 	/**

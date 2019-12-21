@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.google.gson.Gson;
 
 import pe.edu.idat.rest.config.BaseTest;
-import pe.edu.idat.rest.persistence.domain.Institucion;
+import pe.edu.idat.rest.persistence.domain.Alumno;
 
 public class InstitucionRepositoryTest extends BaseTest {
 
@@ -19,7 +19,9 @@ public class InstitucionRepositoryTest extends BaseTest {
 	public void listarAlumnosTest() {
 		
 		List<Alumno> lista = alumnoRepository.findAll();
-		System.out.println("lista = " + new Gson().toJson(lista));
+		for (Alumno alumno : lista) {
+			System.out.println("codigo = " + alumno.getCodigoAlumno());
+		}
 		
 		
 	}

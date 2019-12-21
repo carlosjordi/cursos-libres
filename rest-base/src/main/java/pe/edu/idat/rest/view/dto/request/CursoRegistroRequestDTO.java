@@ -3,6 +3,12 @@ package pe.edu.idat.rest.view.dto.request;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
+
 public class CursoRegistroRequestDTO implements Serializable{
 
 	/**
