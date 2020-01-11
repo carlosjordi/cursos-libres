@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 public class CursoRegistroResponseDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6759276892694316587L;
 	
 	private Integer id;
@@ -31,7 +28,5 @@ public class CursoRegistroResponseDTO implements Serializable{
 	public void setMensajeRespuesta(String mensajeRespuesta) {
 		this.mensajeRespuesta = mensajeRespuesta;
 	}
-	
-	
 
 }

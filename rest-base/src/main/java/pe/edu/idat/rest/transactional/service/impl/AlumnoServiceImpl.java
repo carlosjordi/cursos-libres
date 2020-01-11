@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.gson.Gson;
+
 import pe.edu.idat.rest.persistence.domain.Alumno;
 import pe.edu.idat.rest.persistence.repository.AlumnoRepository;
 import pe.edu.idat.rest.transactional.service.AlumnoService;
@@ -50,8 +52,16 @@ public class AlumnoServiceImpl implements AlumnoService{
 
 	@Override
 	public AlumnoActualizacionResponseDTO actualizarAlumno(AlumnoActualizacionRequestDTO request) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Alumno alumno = alumnoRepository.findOne(Long.valueOf(request.getId().toString()));
+		alumno.setPassAlumno(request.getContrasena());
+		
+		alumnoRepository.save(alumno);
+		
+		AlumnoActualizacionResponseDTO response = new AlumnoActualizacionResponseDTO();
+		response.setCodigoRespuesta("01");
+		response.setMensajeRespuesta("Ok");
+		return response;
 	}
 
 	@Override

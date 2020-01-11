@@ -7,7 +7,9 @@ import com.google.gson.Gson;
 
 import pe.edu.idat.rest.config.BaseTest;
 import pe.edu.idat.rest.transactional.service.AlumnoService;
+import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 
 public class AlumnoServiceImplTest extends BaseTest {
@@ -30,5 +32,18 @@ public class AlumnoServiceImplTest extends BaseTest {
 		AlumnoRegistroResponseDTO response = alumnoService.registrarAlumno(request);
 		System.out.println("response = " + new Gson().toJson(response));
 		
+	}
+	/*
+	 * No funciona el test no sé por que :thinking:
+	 */
+	@Test
+	public void actualizarAlumnoTest() {
+		
+		AlumnoActualizacionRequestDTO request = new AlumnoActualizacionRequestDTO();
+		request.setId(8);
+		request.setContrasena("supersecretoxD");
+		
+		AlumnoActualizacionResponseDTO response = alumnoService.actualizarAlumno(request);
+		System.out.println("response = " + new Gson().toJson(response));
 	}
 }

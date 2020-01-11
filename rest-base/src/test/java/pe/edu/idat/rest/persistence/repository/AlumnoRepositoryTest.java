@@ -48,6 +48,27 @@ public class AlumnoRepositoryTest extends BaseTest {
 	}
 	
 	@Test
+	public void actualizarAlumnoTest() {
+		
+		Alumno alumno = new Alumno();
+		alumno.setIdAlumno(2);
+		alumno.setCodigoAlumno("CA93");
+		alumno.setPassAlumno("mi password");
+		alumno.setNombres("Juan Carlos");
+		alumno.setApellidos("Castillo Aycachi");
+		alumno.setEdad(26);
+		alumno.setTelefono("979666355");
+		alumno.setDni("70555913");
+		alumno.setCorreo("carlosjordi@gmail.com");
+		alumno.setDireccion("otra casita");
+		alumno.setFechaRegistro(new Date());
+		alumno.setInscripcions(null);
+		Alumno a = alumnoRepository.save(alumno);
+		
+		System.out.println(new Gson().toJson(a));
+	}
+	
+	@Test
 	public void listarAlumnosPorCursoTest() {
 		List<Alumno> lista = alumnoRepository.listarAlumnosPorCurso(2);
 		for (Alumno a: lista) {

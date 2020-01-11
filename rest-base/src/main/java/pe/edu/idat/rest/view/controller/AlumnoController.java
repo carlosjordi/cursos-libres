@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.idat.rest.transactional.service.AlumnoService;
+import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
 
@@ -40,13 +42,24 @@ public class AlumnoController {
 				bindingResult
 			);
 		}
-		
-		AlumnoRegistroResponseDTO response = alumnoService.registrarAlumno(
-			alumnoRegistroRequestDTO
-		);
-		
-		return response;
+		return alumnoService.registrarAlumno(alumnoRegistroRequestDTO);
 	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.PUT)
+	@ResponseBody
+	public AlumnoActualizacionResponseDTO actualizarInstitucion(
+		@Valid @RequestBody AlumnoActualizacionRequestDTO alumnoActualizacionRequestDTO, 
+		BindingResult bindingResult
+	) throws Exception {
+		
+		if(bindingResult.hasErrors()) {
+			throw new DemoSOAException(
+				"Error en atributos obligatorio del request alumnoActualizacionRequestDTO", 
+				bindingResult
+			);
+		}
+		return alumnoService.actualizarAlumno(alumnoActualizacionRequestDTO);
+	}	
 //	
 //	@RequestMapping(value = "/datos/{codigo-modular}")
 //	@ResponseBody
@@ -91,27 +104,8 @@ public class AlumnoController {
 //		return response;
 //	}
 //	
-//	
-//	@RequestMapping(value = "/actualizaciones", method = RequestMethod.POST)
-//	@ResponseBody
-//	public InstitucionActualizacionResponseDTO actualizarInstitucion(
-//		@Valid @RequestBody InstitucionActualizacionRequestDTO institucionActualizacionRequestDTO, 
-//		BindingResult bindingResult
-//	) throws Exception {
-//		
-//		if(bindingResult.hasErrors()) {
-//			throw new DemoSOAException(
-//				"Error en atributos obligatorio del request InstitucionActualizacionRequestDTO", 
-//				bindingResult
-//			);
-//		}
-//		
-//		InstitucionActualizacionResponseDTO institucionActualizacionResponseDTO = new InstitucionActualizacionResponseDTO();
-//		
-//		
-//		return institucionActualizacionResponseDTO;
-//		
-//	}		
+	
+		
 
 	
 	

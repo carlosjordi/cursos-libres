@@ -29,7 +29,7 @@ CREATE TABLE `alumno` (
   `direccion` varchar(255) NOT NULL,
   `passAlumno` varchar(50) NOT NULL,
   `codigoAlumno` varchar(11) NOT NULL,
-  `fechaRegistro` datetime NOT NULL
+  `fechaRegistro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 --
 -- Volcado de datos para la tabla `alumno`
