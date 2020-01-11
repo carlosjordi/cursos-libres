@@ -1,7 +1,6 @@
 package pe.edu.idat.rest.view.dto.request;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -11,9 +10,6 @@ import org.hibernate.validator.constraints.Range;
 
 public class CursoRegistroRequestDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 9128948376178677947L;
 	
 	@NotBlank(message = "descripción es un atributo obligatorio")
@@ -30,14 +26,14 @@ public class CursoRegistroRequestDTO implements Serializable{
 			regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d",
 			message = "fechaInicioActividad debe tener el formato dd/mm/aaaa"
 		)
-	private Date FechaInicio;
+	private String FechaInicio;
 	
 	@NotBlank(message = "FechaFin es un atributo obligatorio")
 	@Pattern(
 			regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d",
 			message = "fechaInicioActividad debe tener el formato dd/mm/aaaa"
 		)
-	private Date FechaFin;
+	private String FechaFin;
 	
 	
 	@NotNull(message = "turno es un atributo obligatorio")
@@ -58,7 +54,7 @@ public class CursoRegistroRequestDTO implements Serializable{
 		super();
 	}
 
-	public CursoRegistroRequestDTO(String descripcion, Double costo, Integer vacantes, Date fechaInicio, Date fechaFin,
+	public CursoRegistroRequestDTO(String descripcion, Double costo, Integer vacantes, String fechaInicio, String fechaFin,
 			Integer turno, String lugar, Integer idProfesor) {
 		super();
 		this.descripcion = descripcion;
@@ -89,16 +85,16 @@ public class CursoRegistroRequestDTO implements Serializable{
 	public void setVacantes(Integer vacantes) {
 		this.vacantes = vacantes;
 	}
-	public Date getFechaInicio() {
+	public String getFechaInicio() {
 		return FechaInicio;
 	}
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(String fechaInicio) {
 		FechaInicio = fechaInicio;
 	}
-	public Date getFechaFin() {
+	public String getFechaFin() {
 		return FechaFin;
 	}
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(String fechaFin) {
 		FechaFin = fechaFin;
 	}
 	public Integer getTurno() {

@@ -8,9 +8,6 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class AlumnoActualizacionRequestDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8664673664859208225L;
 	
 	

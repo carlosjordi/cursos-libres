@@ -10,16 +10,16 @@ import pe.edu.idat.rest.transactional.service.AlumnoService;
 import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 
-public class InsitucionServiceImplTest extends BaseTest {
+public class AlumnoServiceImplTest extends BaseTest {
 
 	@Autowired
 	private AlumnoService alumnoService;
 	
 	@Test
-	public void registroInstitucionTest() {
+	public void registroAlumnoTest() {
 		
 		AlumnoRegistroRequestDTO request = new AlumnoRegistroRequestDTO();
-		request.setNombres("BRAZTON");
+		request.setNombres("Bratzon Hilser");
 		request.setApellidos("EL COME GIGANTES");
 		request.setEdad(20);
 		request.setTelefono("123456789");
@@ -31,6 +31,4 @@ public class InsitucionServiceImplTest extends BaseTest {
 		System.out.println("response = " + new Gson().toJson(response));
 		
 	}
-	
-	
 }

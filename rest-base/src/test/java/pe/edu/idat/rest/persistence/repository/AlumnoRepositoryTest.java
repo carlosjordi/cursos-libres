@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import pe.edu.idat.rest.config.BaseTest;
 import pe.edu.idat.rest.persistence.domain.Alumno;
 
-public class InstitucionRepositoryTest extends BaseTest {
+public class AlumnoRepositoryTest extends BaseTest {
 
 	@Autowired
 	private AlumnoRepository alumnoRepository;
@@ -49,7 +49,13 @@ public class InstitucionRepositoryTest extends BaseTest {
 	
 	@Test
 	public void listarAlumnosPorCursoTest() {
-		Alumno alumno = alumnoRepository.findOne(1L);
+		List<Alumno> lista = alumnoRepository.listarAlumnosPorCurso(2);
+		for (Alumno a: lista) {
+			System.out.println("id: " + a.getIdAlumno());
+			System.out.println("nombre: " + a.getNombres());
+			System.out.println("apellidos: " + a.getApellidos());
+			System.out.println("codigoAlumno: " + a.getCodigoAlumno());
+		}
 	}
 	
 }

@@ -5,9 +5,6 @@ import java.util.List;
 
 public class AlumnoListadoResponseDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 9102845187755287847L;
 
 	

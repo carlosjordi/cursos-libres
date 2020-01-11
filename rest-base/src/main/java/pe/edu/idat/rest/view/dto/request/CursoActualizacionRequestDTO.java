@@ -1,7 +1,6 @@
 package pe.edu.idat.rest.view.dto.request;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -10,9 +9,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
 public class CursoActualizacionRequestDTO implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 3666892148836440984L;
 	
 	@NotNull(message = "id es un atributo obligatorio")
@@ -35,14 +32,14 @@ public class CursoActualizacionRequestDTO implements Serializable {
 			regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d",
 			message = "fechaInicioActividad debe tener el formato dd/mm/aaaa"
 		)
-	private Date FechaInicio;
+	private String FechaInicio;
 	
 	@NotBlank(message = "FechaFin es un atributo obligatorio")
 	@Pattern(
 			regexp = "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/(19|20)\\d\\d",
 			message = "fechaInicioActividad debe tener el formato dd/mm/aaaa"
 		)
-	private Date FechaFin;
+	private String FechaFin;
 	
 	@NotNull(message = "turno es un atributo obligatorio")
 	@Range(
@@ -63,7 +60,7 @@ public class CursoActualizacionRequestDTO implements Serializable {
 	}
 	
 	public CursoActualizacionRequestDTO(Integer id, String descripcion, Double costo, Integer vacantes,
-			Integer vacantesActuales, Date fechaInicio, Date fechaFin, Integer turno, String lugar,
+			Integer vacantesActuales, String fechaInicio, String fechaFin, Integer turno, String lugar,
 			Integer idProfesor) {
 		super();
 		this.id = id;
@@ -107,16 +104,16 @@ public class CursoActualizacionRequestDTO implements Serializable {
 	public void setVacantesActuales(Integer vacantesActuales) {
 		this.vacantesActuales = vacantesActuales;
 	}
-	public Date getFechaInicio() {
+	public String getFechaInicio() {
 		return FechaInicio;
 	}
-	public void setFechaInicio(Date fechaInicio) {
+	public void setFechaInicio(String fechaInicio) {
 		FechaInicio = fechaInicio;
 	}
-	public Date getFechaFin() {
+	public String getFechaFin() {
 		return FechaFin;
 	}
-	public void setFechaFin(Date fechaFin) {
+	public void setFechaFin(String fechaFin) {
 		FechaFin = fechaFin;
 	}
 	public Integer getTurno() {
