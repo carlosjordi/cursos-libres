@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 public class Alumno  implements java.io.Serializable {
 
 
-     private Integer idAlumno;
+     private Long idAlumno;
      private String codigoAlumno;
      private String passAlumno;
      private String nombres;
@@ -72,11 +72,11 @@ public class Alumno  implements java.io.Serializable {
 
     
     @Column(name="idAlumno", unique=true, nullable=false)
-    public Integer getIdAlumno() {
+    public Long getIdAlumno() {
         return this.idAlumno;
     }
     
-    public void setIdAlumno(Integer idAlumno) {
+    public void setIdAlumno(Long idAlumno) {
         this.idAlumno = idAlumno;
     }
 

@@ -30,7 +30,7 @@ public class AlumnoRepositoryTest extends BaseTest {
 	public void registrarAlumnoTest() {
 		
 		Alumno alumno = new Alumno();
-		alumno.setIdAlumno(10);
+		alumno.setIdAlumno(10L);
 		alumno.setCodigoAlumno("CA93");
 		alumno.setPassAlumno("CA70555913");
 		alumno.setNombres("Juan Carlos");
@@ -51,7 +51,7 @@ public class AlumnoRepositoryTest extends BaseTest {
 	public void actualizarAlumnoTest() {
 		
 		Alumno alumno = new Alumno();
-		alumno.setIdAlumno(2);
+		alumno.setIdAlumno(2L);
 		alumno.setCodigoAlumno("CA93");
 		alumno.setPassAlumno("mi password");
 		alumno.setNombres("Juan Carlos");

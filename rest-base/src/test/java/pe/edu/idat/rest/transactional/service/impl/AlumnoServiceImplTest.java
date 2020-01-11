@@ -33,9 +33,7 @@ public class AlumnoServiceImplTest extends BaseTest {
 		System.out.println("response = " + new Gson().toJson(response));
 		
 	}
-	/*
-	 * No funciona el test no sé por que :thinking:
-	 */
+	
 	@Test
 	public void actualizarAlumnoTest() {
 		

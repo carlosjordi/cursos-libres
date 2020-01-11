@@ -44,7 +44,7 @@ public class AlumnoServiceImpl implements AlumnoService{
 		AlumnoRegistroResponseDTO response = new AlumnoRegistroResponseDTO();
 		response.setCodigoRespuesta("01");
 		response.setMensajeRespuesta("Ok");
-		response.setId(alumno.getIdAlumno());
+		response.setId(Integer.valueOf(alumno.getIdAlumno().toString()));
 		response.setCodigoAlumno(alumno.getCodigoAlumno());
 		response.setContrasena(alumno.getPassAlumno());
 		return response;
