@@ -10,6 +10,7 @@ import pe.edu.idat.rest.transactional.service.AlumnoService;
 import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListadoPorCursoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 
@@ -50,6 +51,13 @@ public class AlumnoServiceImplTest extends BaseTest {
 	public void listarAlumnosTest() {
 		
 		AlumnoListadoResponseDTO response = alumnoService.listarAlumnos();
+		System.out.println("response = " + new Gson().toJson(response));
+	}
+	
+	@Test
+	public void listarAlumnosPorCursoTest() {
+		
+		AlumnoListadoPorCursoResponseDTO response = alumnoService.listarPorCurso(2);
 		System.out.println("response = " + new Gson().toJson(response));
 	}
 }

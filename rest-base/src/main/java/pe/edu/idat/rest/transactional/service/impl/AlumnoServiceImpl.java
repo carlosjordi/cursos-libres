@@ -16,6 +16,7 @@ import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoPorCursoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListarPorCursoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 
@@ -97,8 +98,24 @@ public class AlumnoServiceImpl implements AlumnoService{
 
 	@Override
 	public AlumnoListadoPorCursoResponseDTO listarPorCurso(Integer idCurso) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Alumno> alumnosPorCurso = alumnoRepository.listarAlumnosPorCurso(idCurso);
+		
+		List<AlumnoListarPorCursoResponseDTO> alumnosResponse = new ArrayList<AlumnoListarPorCursoResponseDTO>();
+		AlumnoListarPorCursoResponseDTO item = null;
+		
+		for (Alumno a: alumnosPorCurso) {
+			item = new AlumnoListarPorCursoResponseDTO();
+			item.setId(Integer.valueOf(a.getIdAlumno().toString()));
+			item.setCodigoAlumno(a.getCodigoAlumno());
+			item.setNombre(a.getNombres());
+			item.setApellido(a.getApellidos());
+			alumnosResponse.add(item);
+		}
+		
+		AlumnoListadoPorCursoResponseDTO response = new AlumnoListadoPorCursoResponseDTO();
+		response.setAlumnos(alumnosResponse);
+		return response;
 	}
 	
 	private String generarCodigoAlumno(Alumno a) {

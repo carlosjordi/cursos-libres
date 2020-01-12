@@ -18,6 +18,9 @@ import pe.edu.idat.rest.transactional.service.AlumnoService;
 import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListadoPorCursoResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListadoResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
 
@@ -60,16 +63,18 @@ public class AlumnoController {
 		}
 		return alumnoService.actualizarAlumno(alumnoActualizacionRequestDTO);
 	}	
-//	
-//	@RequestMapping(value = "/datos/{codigo-modular}")
-//	@ResponseBody
-//	public InstitucionDatoResponseDTO dataInstitucion(
-//		@PathVariable(value="codigo-modular") String codigoModular) {
-//		
-//		InstitucionDatoResponseDTO response = institucionService.dataInstitucion(codigoModular);
-//		
-//		return response;
-//	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@ResponseBody
+	public AlumnoListadoResponseDTO listarAlumnos() {
+		return alumnoService.listarAlumnos();
+	}
+	
+	@RequestMapping(value = "/{codigo-curso}", method = RequestMethod.GET)
+	@ResponseBody
+	public AlumnoListadoPorCursoResponseDTO listarAlumnosPorCurso(@PathVariable(value = "codigo-curso") Integer codigo) {
+		return alumnoService.listarPorCurso(codigo);
+	}
 	
 //	
 //	@RequestMapping(value ="/sedes/registros", method = RequestMethod.POST)
