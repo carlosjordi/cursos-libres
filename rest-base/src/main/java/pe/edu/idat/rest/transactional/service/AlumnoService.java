@@ -4,6 +4,7 @@ import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoPorCursoResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 
 public interface AlumnoService {
@@ -13,6 +14,8 @@ public interface AlumnoService {
 	
 	public AlumnoActualizacionResponseDTO actualizarAlumno(
 			AlumnoActualizacionRequestDTO request);
+	
+	public AlumnoListadoResponseDTO listarAlumnos();
 	
 	public AlumnoListadoPorCursoResponseDTO listarPorCurso(Integer idCurso);
 	

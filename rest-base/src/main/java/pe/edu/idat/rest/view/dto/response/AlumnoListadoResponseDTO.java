@@ -7,11 +7,9 @@ public class AlumnoListadoResponseDTO implements Serializable{
 
 	private static final long serialVersionUID = 9102845187755287847L;
 
-	
 	private String codigoRespuesta;
 	private String mensajeRespuesta;
 	private List<AlumnoListarResponseDTO> alumnos;
-	
 	
 	public String getCodigoRespuesta() {
 		return codigoRespuesta;

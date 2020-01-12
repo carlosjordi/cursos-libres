@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 public class AlumnoListarResponseDTO implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7406359270342792870L;
 
 	private Integer id;

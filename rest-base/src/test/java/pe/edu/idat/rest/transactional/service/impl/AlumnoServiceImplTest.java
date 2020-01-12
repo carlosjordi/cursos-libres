@@ -10,6 +10,7 @@ import pe.edu.idat.rest.transactional.service.AlumnoService;
 import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 
 public class AlumnoServiceImplTest extends BaseTest {
@@ -42,6 +43,13 @@ public class AlumnoServiceImplTest extends BaseTest {
 		request.setContrasena("supersecretoxD");
 		
 		AlumnoActualizacionResponseDTO response = alumnoService.actualizarAlumno(request);
+		System.out.println("response = " + new Gson().toJson(response));
+	}
+	
+	@Test
+	public void listarAlumnosTest() {
+		
+		AlumnoListadoResponseDTO response = alumnoService.listarAlumnos();
 		System.out.println("response = " + new Gson().toJson(response));
 	}
 }
