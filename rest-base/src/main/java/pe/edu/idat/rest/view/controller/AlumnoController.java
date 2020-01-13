@@ -1,8 +1,5 @@
 package pe.edu.idat.rest.view.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,6 @@ import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoPorCursoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoResponseDTO;
-import pe.edu.idat.rest.view.dto.response.AlumnoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
 

@@ -16,24 +16,6 @@ public class AlumnoRepositoryTest extends BaseTest {
 	@Autowired
 	private AlumnoRepository alumnoRepository;
 	
-	
-	@Test
-	public void listarAlumnosTest() {
-		
-		List<Alumno> lista = alumnoRepository.findAll();
-		for (Alumno alumno : lista) {
-			System.out.println("id: " + alumno.getIdAlumno());
-			System.out.println("codigo: " + alumno.getCodigoAlumno());
-			System.out.println("nombres: " + alumno.getNombres());
-			System.out.println("apellidos: " + alumno.getApellidos());
-			System.out.println("edad: " + alumno.getEdad());
-			System.out.println("telefono: " + alumno.getTelefono());
-			System.out.println("dni: " + alumno.getDni());
-			System.out.println("correo: " + alumno.getCorreo());
-			System.out.println("direccion: " + alumno.getDireccion());
-		}	
-	}
-	
 	@Test
 	public void registrarAlumnoTest() {
 		
@@ -74,6 +56,23 @@ public class AlumnoRepositoryTest extends BaseTest {
 		Alumno a = alumnoRepository.save(alumno);
 		
 		System.out.println(new Gson().toJson(a));
+	}
+	
+	@Test
+	public void listarAlumnosTest() {
+		
+		List<Alumno> lista = alumnoRepository.findAll();
+		for (Alumno alumno : lista) {
+			System.out.println("id: " + alumno.getIdAlumno());
+			System.out.println("codigo: " + alumno.getCodigoAlumno());
+			System.out.println("nombres: " + alumno.getNombres());
+			System.out.println("apellidos: " + alumno.getApellidos());
+			System.out.println("edad: " + alumno.getEdad());
+			System.out.println("telefono: " + alumno.getTelefono());
+			System.out.println("dni: " + alumno.getDni());
+			System.out.println("correo: " + alumno.getCorreo());
+			System.out.println("direccion: " + alumno.getDireccion());
+		}	
 	}
 	
 	@Test
