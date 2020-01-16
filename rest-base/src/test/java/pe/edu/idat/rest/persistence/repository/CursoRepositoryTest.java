@@ -1,11 +1,14 @@
 package pe.edu.idat.rest.persistence.repository;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import pe.edu.idat.rest.config.BaseTest;
+import pe.edu.idat.rest.persistence.domain.Curso;
 
 public class CursoRepositoryTest extends BaseTest {
 
@@ -17,5 +20,18 @@ public class CursoRepositoryTest extends BaseTest {
 
 		cursoRepository.registrarCurso(3, "Android", 450.00, 20, 20, "2020-01-30", "2020-03-30", 1, "La jaus",
 				new Date());
+	}
+	
+	@Test
+	public void listarCursosTest() {
+		List<Curso> cursos = cursoRepository.findAll();
+		for (Curso c: cursos) {
+			System.out.println("=================");
+			System.out.println(c.getDescripcion());
+			System.out.println(c.getCosto());
+			System.out.println(c.getVacantes());
+			System.out.println(c.getProfesor());
+			System.out.println("=================");
+		}
 	}
 }

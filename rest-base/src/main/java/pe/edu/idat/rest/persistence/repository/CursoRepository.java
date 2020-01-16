@@ -1,6 +1,7 @@
 package pe.edu.idat.rest.persistence.repository;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,4 +21,7 @@ public interface CursoRepository extends JpaRepository<Curso, Integer> {
 			@Param("vac") Integer vac, @Param("vacA") Integer vacAct, @Param("fi") String fechaI,
 			@Param("ff") String fechaF, @Param("tur") Integer turno, @Param("lug") String lugar,
 			@Param("fr") Date fechaRegistro);
+	
+//	@Query(value = "select ", nativeQuery = true)
+//	List<Curso> listarCursos();
 }
