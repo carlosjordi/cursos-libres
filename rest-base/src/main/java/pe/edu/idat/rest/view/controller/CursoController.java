@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,24 +17,22 @@ import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
 
 @RestController
-@RequestMapping(value = {"/api/v1/cursos"})
+@CrossOrigin(allowCredentials = "true", origins = { "*" }, allowedHeaders = { "*" }, methods = { RequestMethod.GET,
+		RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
+@RequestMapping(value = { "/api/v1/cursos" })
 public class CursoController {
-	
+
 	@Autowired
 	private CursoService cursoService;
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ResponseBody
-	public CursoRegistroResponseDTO registrarCurso(
-		@Valid @RequestBody CursoRegistroRequestDTO cursoRegistroRequestDTO,
-		BindingResult bindingResult
-	) {
-		
-		if( bindingResult.hasErrors() ) {
-			throw new DemoSOAException(
-				"Error en atributos obligatorios del request cursoRegistroRequestDTO",
-				bindingResult
-			);
+	public CursoRegistroResponseDTO registrarCurso(@Valid @RequestBody CursoRegistroRequestDTO cursoRegistroRequestDTO,
+			BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			throw new DemoSOAException("Error en atributos obligatorios del request cursoRegistroRequestDTO",
+					bindingResult);
 		}
 		return cursoService.registrarCurso(cursoRegistroRequestDTO);
 	}

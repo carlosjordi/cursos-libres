@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,57 +22,52 @@ import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
 
 @RestController
-@RequestMapping(value = {"/api/v1/alumnos"})
+@CrossOrigin(allowCredentials = "true", origins = { "*" }, allowedHeaders = { "*" }, methods = { RequestMethod.GET,
+		RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
+@RequestMapping(value = { "/api/v1/alumnos" })
 public class AlumnoController {
-	
+
 	@Autowired
 	private AlumnoService alumnoService;
-	
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ResponseBody
 	public AlumnoRegistroResponseDTO registroAlumno(
-		@Valid @RequestBody AlumnoRegistroRequestDTO alumnoRegistroRequestDTO,
-		BindingResult bindingResult
-	) {
-		
-		if( bindingResult.hasErrors() ) {
-			throw new DemoSOAException(
-				"Error en atributos obligatorios del request alumnoRegistroRequestDTO",
-				bindingResult
-			);
+			@Valid @RequestBody AlumnoRegistroRequestDTO alumnoRegistroRequestDTO, BindingResult bindingResult) {
+
+		if (bindingResult.hasErrors()) {
+			throw new DemoSOAException("Error en atributos obligatorios del request alumnoRegistroRequestDTO",
+					bindingResult);
 		}
 		return alumnoService.registrarAlumno(alumnoRegistroRequestDTO);
 	}
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	@ResponseBody
 	public AlumnoActualizacionResponseDTO actualizarInstitucion(
-		@Valid @RequestBody AlumnoActualizacionRequestDTO alumnoActualizacionRequestDTO, 
-		BindingResult bindingResult
-	) throws Exception {
-		
-		if(bindingResult.hasErrors()) {
-			throw new DemoSOAException(
-				"Error en atributos obligatorio del request alumnoActualizacionRequestDTO", 
-				bindingResult
-			);
+			@Valid @RequestBody AlumnoActualizacionRequestDTO alumnoActualizacionRequestDTO,
+			BindingResult bindingResult) throws Exception {
+
+		if (bindingResult.hasErrors()) {
+			throw new DemoSOAException("Error en atributos obligatorio del request alumnoActualizacionRequestDTO",
+					bindingResult);
 		}
 		return alumnoService.actualizarAlumno(alumnoActualizacionRequestDTO);
-	}	
-	
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@ResponseBody
 	public AlumnoListadoResponseDTO listarAlumnos() {
 		return alumnoService.listarAlumnos();
 	}
-	
+
 	@RequestMapping(value = "/{codigo-curso}", method = RequestMethod.GET)
 	@ResponseBody
-	public AlumnoListadoPorCursoResponseDTO listarAlumnosPorCurso(@PathVariable(value = "codigo-curso") Integer codigo) {
+	public AlumnoListadoPorCursoResponseDTO listarAlumnosPorCurso(
+			@PathVariable(value = "codigo-curso") Integer codigo) {
 		return alumnoService.listarPorCurso(codigo);
 	}
-	
+
 //	
 //	@RequestMapping(value ="/sedes/registros", method = RequestMethod.POST)
 //	@ResponseBody
@@ -105,9 +101,5 @@ public class AlumnoController {
 //		return response;
 //	}
 //	
-	
-		
 
-	
-	
 }

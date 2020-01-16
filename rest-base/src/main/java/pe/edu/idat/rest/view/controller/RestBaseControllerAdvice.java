@@ -74,7 +74,8 @@ public class RestBaseControllerAdvice extends ResponseEntityExceptionHandler {
         //-- Logica header
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
-        headers.setAccessControlAllowOrigin("*");
+        // estoy comentando esto para ver si así nos comunicamos con el front
+        //headers.setAccessControlAllowOrigin("*");
         
         //-- Respuesta
         BaseResponseDTO response = new BaseResponseDTO();
