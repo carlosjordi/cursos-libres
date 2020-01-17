@@ -22,14 +22,14 @@ import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 
 @Transactional
 @Service("alumnoService")
-public class AlumnoServiceImpl implements AlumnoService{
+public class AlumnoServiceImpl implements AlumnoService {
 
 	@Autowired
 	private AlumnoRepository alumnoRepository;
-	
+
 	@Override
 	public AlumnoRegistroResponseDTO registrarAlumno(AlumnoRegistroRequestDTO request) {
-		
+
 		Alumno alumno = new Alumno();
 		alumno.setNombres(request.getNombres());
 		alumno.setApellidos(request.getApellidos());
@@ -41,9 +41,9 @@ public class AlumnoServiceImpl implements AlumnoService{
 		alumno.setCodigoAlumno(generarCodigoAlumno(alumno));
 		alumno.setPassAlumno(passwordPorDefecto(alumno));
 		alumno.setFechaRegistro(new Date());
-		
+
 		alumno = alumnoRepository.save(alumno);
-		
+
 		AlumnoRegistroResponseDTO response = new AlumnoRegistroResponseDTO();
 		response.setCodigoRespuesta("01");
 		response.setMensajeRespuesta("Ok");
@@ -58,24 +58,24 @@ public class AlumnoServiceImpl implements AlumnoService{
 
 		Alumno alumno = alumnoRepository.findOne(Long.valueOf(request.getId().toString()));
 		alumno.setPassAlumno(request.getContrasena());
-		
+
 		alumnoRepository.save(alumno);
-		
+
 		AlumnoActualizacionResponseDTO response = new AlumnoActualizacionResponseDTO();
 		response.setCodigoRespuesta("01");
 		response.setMensajeRespuesta("Ok");
 		return response;
 	}
-	
+
 	@Override
 	public AlumnoListadoResponseDTO listarAlumnos() {
 
 		List<Alumno> alumnos = alumnoRepository.findAll();
-		
+
 		List<AlumnoListarResponseDTO> alumnosResponse = new ArrayList<>();
 		AlumnoListarResponseDTO item = null;
-		
-		for (Alumno a: alumnos) {
+
+		for (Alumno a : alumnos) {
 			item = new AlumnoListarResponseDTO();
 			item.setId(Integer.valueOf(a.getIdAlumno().toString()));
 			item.setCodigoAlumno(a.getCodigoAlumno());
@@ -88,7 +88,7 @@ public class AlumnoServiceImpl implements AlumnoService{
 			item.setDireccion(a.getDireccion());
 			alumnosResponse.add(item);
 		}
-		
+
 		AlumnoListadoResponseDTO response = new AlumnoListadoResponseDTO();
 		response.setCodigoRespuesta("01");
 		response.setMensajeRespuesta("Ok");
@@ -98,13 +98,13 @@ public class AlumnoServiceImpl implements AlumnoService{
 
 	@Override
 	public AlumnoListadoPorCursoResponseDTO listarPorCurso(Integer idCurso) {
-		
+
 		List<Alumno> alumnosPorCurso = alumnoRepository.listarAlumnosPorCurso(idCurso);
-		
+
 		List<AlumnoListarPorCursoResponseDTO> alumnosResponse = new ArrayList<AlumnoListarPorCursoResponseDTO>();
 		AlumnoListarPorCursoResponseDTO item = null;
-		
-		for (Alumno a: alumnosPorCurso) {
+
+		for (Alumno a : alumnosPorCurso) {
 			item = new AlumnoListarPorCursoResponseDTO();
 			item.setId(Integer.valueOf(a.getIdAlumno().toString()));
 			item.setCodigoAlumno(a.getCodigoAlumno());
@@ -112,23 +112,41 @@ public class AlumnoServiceImpl implements AlumnoService{
 			item.setApellido(a.getApellidos());
 			alumnosResponse.add(item);
 		}
-		
+
 		AlumnoListadoPorCursoResponseDTO response = new AlumnoListadoPorCursoResponseDTO();
 		response.setAlumnos(alumnosResponse);
 		return response;
 	}
-	
+
 	private String generarCodigoAlumno(Alumno a) {
 		String inicialApellido = a.getApellidos().substring(0, 1);
 		String anoActual = "20";
 		String dni = a.getDni();
 		return inicialApellido + anoActual + dni;
 	}
-	
+
 	private String passwordPorDefecto(Alumno a) {
 		String inicialApellido = a.getApellidos().substring(0, 1);
 		String telefono = a.getTelefono();
 		return inicialApellido + telefono;
+	}
+
+	@Override
+	public AlumnoListarResponseDTO buscarAlumnoPorId(Long idAlumno) {
+		
+		Alumno a = alumnoRepository.findOne(idAlumno);
+
+		AlumnoListarResponseDTO response = new AlumnoListarResponseDTO();
+		response.setApellidos(a.getApellidos());
+		response.setCodigoAlumno(a.getCodigoAlumno());
+		response.setCorreo(a.getCorreo());
+		response.setDireccion(a.getDireccion());
+		response.setDni(a.getDni());
+		response.setEdad(a.getEdad());
+		response.setId(Integer.valueOf(a.getIdAlumno().toString()));
+		response.setNombres(a.getNombres());
+		response.setTelefono(a.getTelefono());
+		return response;
 	}
 
 }

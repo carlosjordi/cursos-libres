@@ -18,6 +18,7 @@ import pe.edu.idat.rest.view.dto.request.AlumnoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoPorCursoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
 
@@ -66,6 +67,13 @@ public class AlumnoController {
 	public AlumnoListadoPorCursoResponseDTO listarAlumnosPorCurso(
 			@PathVariable(value = "codigo-curso") Integer codigo) {
 		return alumnoService.listarPorCurso(codigo);
+	}
+	
+	@RequestMapping(value = "/alumno/{codigo-alumno}", method = RequestMethod.GET)
+	@ResponseBody
+	public AlumnoListarResponseDTO buscarAlumnoPorId(
+			@PathVariable(value = "codigo-alumno") Integer codigo) {
+		return alumnoService.buscarAlumnoPorId(Long.valueOf(codigo));
 	}
 
 //	
