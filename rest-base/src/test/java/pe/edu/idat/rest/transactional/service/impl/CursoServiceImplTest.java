@@ -11,6 +11,7 @@ import pe.edu.idat.rest.view.dto.request.CursoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.CursoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
+import pe.edu.idat.rest.view.dto.response.CursoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
 
 public class CursoServiceImplTest extends BaseTest {
@@ -55,6 +56,12 @@ public class CursoServiceImplTest extends BaseTest {
 		request.setIdProfesor(3);
 		
 		CursoActualizacionResponseDTO response = cursoService.actualizarCurso(request);
+		System.out.println(new Gson().toJson(response));
+	}
+	
+	@Test
+	public void buscarCursoPorId() {
+		CursoListarResponseDTO response = cursoService.buscarCursoPorId(3);
 		System.out.println(new Gson().toJson(response));
 	}
 

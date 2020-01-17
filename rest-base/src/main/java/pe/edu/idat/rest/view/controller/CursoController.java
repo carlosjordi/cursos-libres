@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,8 +17,10 @@ import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.CursoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoListadoPorCursoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
+import pe.edu.idat.rest.view.dto.response.CursoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
 
@@ -59,6 +62,13 @@ public class CursoController {
 					bindingResult);
 		}
 		return cursoService.actualizarCurso(cursoActualizacionRequestDTO);
+	}
+	
+	@RequestMapping(value = "/curso/{codigo-curso}", method = RequestMethod.GET)
+	@ResponseBody
+	public CursoListarResponseDTO buscarCursoPorId(
+			@PathVariable(value = "codigo-curso") Integer codigo) {
+		return cursoService.buscarCursoPorId(codigo);
 	}
 	
 }

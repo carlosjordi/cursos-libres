@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.google.gson.Gson;
+
 import pe.edu.idat.rest.config.BaseTest;
 import pe.edu.idat.rest.persistence.domain.Curso;
 
@@ -41,5 +43,11 @@ public class CursoRepositoryTest extends BaseTest {
 	@Test
 	public void actualizarCursoTest() {
 		cursoRepository.actualizarCurso(1, "curso actualizado", 200.00, 20, "2020-01-16", "2020-02-16", 3, "Casa nueva", 3);
+	}
+	
+	@Test
+	public void buscarCursoPorId() {
+		Curso c = cursoRepository.findOne(1);
+		System.out.println(c.getDescripcion());
 	}
 }

@@ -90,6 +90,23 @@ public class CursoServiceImpl implements CursoService {
 		return response;
 	}
 
+	@Override
+	public CursoListarResponseDTO buscarCursoPorId(Integer id) {
+		
+		Curso c = cursoRepository.findOne(id);
+		
+		CursoListarResponseDTO response = new CursoListarResponseDTO();
+		response.setId(c.getIdCurso());
+		response.setCosto(Double.valueOf(c.getCosto().toString()));
+		response.setDescripcion(c.getDescripcion());
+		response.setFechaFin(c.getFechaFin().toString());
+		response.setFechaInicio(c.getFechaInicio().toString());
+		response.setLugar(c.getLugar());
+		response.setTurno(c.getTurno());
+		response.setVacantes(c.getVacantes());
+		return response;
+	}
+
 //	private Date stringToDate(String fecha) throws ParseException {
 //		return new SimpleDateFormat("yyyy-MM-dd").parse(fecha);
 //	}
