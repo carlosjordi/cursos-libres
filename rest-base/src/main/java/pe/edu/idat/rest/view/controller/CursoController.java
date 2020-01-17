@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.idat.rest.transactional.service.CursoService;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
-import pe.edu.idat.rest.view.dto.response.AlumnoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
