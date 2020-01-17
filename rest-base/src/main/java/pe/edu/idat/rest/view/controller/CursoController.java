@@ -19,6 +19,7 @@ import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.AlumnoListadoPorCursoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.CursoListadoPorAlumnoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
@@ -69,6 +70,13 @@ public class CursoController {
 	public CursoListarResponseDTO buscarCursoPorId(
 			@PathVariable(value = "codigo-curso") Integer codigo) {
 		return cursoService.buscarCursoPorId(codigo);
+	}
+	
+	@RequestMapping(value = "/{codigo-alumno}", method = RequestMethod.GET)
+	@ResponseBody
+	public CursoListadoPorAlumnoResponseDTO listarCursosPorAlumno(
+			@PathVariable(value = "codigo-alumno") Long codigo) {
+		return cursoService.listarCursosPorAlumno(codigo);
 	}
 	
 }

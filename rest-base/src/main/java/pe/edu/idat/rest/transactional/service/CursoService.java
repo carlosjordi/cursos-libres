@@ -4,6 +4,7 @@ import pe.edu.idat.rest.view.dto.request.CursoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.request.InscripcionRetiroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.CursoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.CursoListadoPorAlumnoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
@@ -24,5 +25,7 @@ public interface CursoService {
 	public CursoListadoResponseDTO listarCursos();
 	
 	public CursoListarResponseDTO buscarCursoPorId(Integer id);
+	
+	public CursoListadoPorAlumnoResponseDTO listarCursosPorAlumno(Long idAlumno);
 	
 }

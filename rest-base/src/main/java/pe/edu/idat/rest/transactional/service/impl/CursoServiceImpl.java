@@ -17,7 +17,9 @@ import pe.edu.idat.rest.view.dto.request.CursoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.request.InscripcionRetiroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.CursoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.CursoListadoPorAlumnoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
+import pe.edu.idat.rest.view.dto.response.CursoListarPorAlumnoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
 import pe.edu.idat.rest.view.dto.response.InscripcionRetiroResponseDTO;
@@ -49,7 +51,7 @@ public class CursoServiceImpl implements CursoService {
 		cursoRepository.actualizarCurso(request.getId(), request.getDescripcion(), request.getCosto(),
 				request.getVacantes(), request.getFechaInicio(), request.getFechaFin(), request.getTurno(),
 				request.getLugar(), request.getIdProfesor());
-		
+
 		CursoActualizacionResponseDTO response = new CursoActualizacionResponseDTO();
 		response.setCodigoRespuesta("01");
 		response.setMensajeRespuesta("Curso Actualizado");
@@ -92,9 +94,9 @@ public class CursoServiceImpl implements CursoService {
 
 	@Override
 	public CursoListarResponseDTO buscarCursoPorId(Integer id) {
-		
+
 		Curso c = cursoRepository.findOne(id);
-		
+
 		CursoListarResponseDTO response = new CursoListarResponseDTO();
 		response.setId(c.getIdCurso());
 		response.setCosto(Double.valueOf(c.getCosto().toString()));
@@ -104,6 +106,30 @@ public class CursoServiceImpl implements CursoService {
 		response.setLugar(c.getLugar());
 		response.setTurno(c.getTurno());
 		response.setVacantes(c.getVacantes());
+		return response;
+	}
+
+	@Override
+	public CursoListadoPorAlumnoResponseDTO listarCursosPorAlumno(Long idAlumno) {
+
+		List<Curso> listaCursos = cursoRepository.listarCursosPorAlumno(idAlumno);
+
+		List<CursoListarPorAlumnoResponseDTO> cursos = new ArrayList<>();
+		CursoListarPorAlumnoResponseDTO item = null;
+
+		for (Curso c : listaCursos) {
+			item = new CursoListarPorAlumnoResponseDTO();
+			item.setId(c.getIdCurso());
+			item.setDescripcion(c.getDescripcion());
+			item.setLugar(c.getLugar());
+			item.setTurno(c.getTurno());
+			cursos.add(item);
+		}
+
+		CursoListadoPorAlumnoResponseDTO response = new CursoListadoPorAlumnoResponseDTO();
+		response.setCodigoRespuesta("01");
+		response.setMensajeRespuesta("Cursos del alumno");
+		response.setCursos(cursos);
 		return response;
 	}
 

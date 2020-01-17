@@ -10,6 +10,7 @@ import pe.edu.idat.rest.transactional.service.CursoService;
 import pe.edu.idat.rest.view.dto.request.CursoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
 import pe.edu.idat.rest.view.dto.response.CursoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.CursoListadoPorAlumnoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListarResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
@@ -60,8 +61,14 @@ public class CursoServiceImplTest extends BaseTest {
 	}
 	
 	@Test
-	public void buscarCursoPorId() {
+	public void buscarCursoPorIdTest() {
 		CursoListarResponseDTO response = cursoService.buscarCursoPorId(3);
+		System.out.println(new Gson().toJson(response));
+	}
+	
+	@Test
+	public void listarCursosPorAlumnoTest() {
+		CursoListadoPorAlumnoResponseDTO response = cursoService.listarCursosPorAlumno(2L);
 		System.out.println(new Gson().toJson(response));
 	}
 

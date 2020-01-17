@@ -1,6 +1,7 @@
 package pe.edu.idat.rest.persistence.repository;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -28,5 +29,11 @@ public interface CursoRepository extends JpaRepository<Curso, Integer> {
 	void actualizarCurso(@Param("id") Integer id, @Param("des") String des, @Param("cos") Double costo,
 			@Param("vac") Integer vac, @Param("fi") String fechaI, @Param("ff") String fechaF,
 			@Param("tu") Integer turno, @Param("lu") String lugar, @Param("iP") Integer idProfesor);
+
+	@Query(value = "select c from Curso c "
+			+ "inner join fetch c.inscripcions i "
+			+ "inner join fetch i.alumno a "
+			+ "where a.idAlumno = :idAlumno")
+	public List<Curso> listarCursosPorAlumno(@Param("idAlumno") Long idAlumno);
 
 }
