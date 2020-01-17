@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import pe.edu.idat.rest.config.BaseTest;
 import pe.edu.idat.rest.transactional.service.CursoService;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
+import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
 
 public class CursoServiceImplTest extends BaseTest {
@@ -28,6 +29,13 @@ public class CursoServiceImplTest extends BaseTest {
 		request.setLugar("La oficina con sillon");
 		
 		CursoRegistroResponseDTO response = cursoService.registrarCurso(request);
+		System.out.println(new Gson().toJson(response));
+	}
+	
+	@Test
+	public void listarCursosTest() {
+		
+		CursoListadoResponseDTO response = cursoService.listarCursos();
 		System.out.println(new Gson().toJson(response));
 	}
 
