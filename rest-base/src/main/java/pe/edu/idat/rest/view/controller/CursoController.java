@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.edu.idat.rest.transactional.service.CursoService;
+import pe.edu.idat.rest.view.dto.request.AlumnoActualizacionRequestDTO;
+import pe.edu.idat.rest.view.dto.request.CursoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
+import pe.edu.idat.rest.view.dto.response.AlumnoActualizacionResponseDTO;
+import pe.edu.idat.rest.view.dto.response.CursoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
 import pe.edu.idat.rest.view.exception.DemoSOAException;
@@ -43,4 +47,18 @@ public class CursoController {
 	public CursoListadoResponseDTO listarCursos() {
 		return cursoService.listarCursos();
 	}
+	
+	@RequestMapping(value = "/", method = RequestMethod.PUT)
+	@ResponseBody
+	public CursoActualizacionResponseDTO actualizarCurso(
+			@Valid @RequestBody CursoActualizacionRequestDTO cursoActualizacionRequestDTO,
+			BindingResult bindingResult) throws Exception {
+
+		if (bindingResult.hasErrors()) {
+			throw new DemoSOAException("Error en atributos obligatorio del request cursoActualizacionRequestDTO",
+					bindingResult);
+		}
+		return cursoService.actualizarCurso(cursoActualizacionRequestDTO);
+	}
+	
 }

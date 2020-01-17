@@ -37,4 +37,9 @@ public class CursoRepositoryTest extends BaseTest {
 			System.out.println("=================");
 		}
 	}
+	
+	@Test
+	public void actualizarCursoTest() {
+		cursoRepository.actualizarCurso(1, "curso actualizado", 200.00, 20, "2020-01-16", "2020-02-16", 3, "Casa nueva", 3);
+	}
 }

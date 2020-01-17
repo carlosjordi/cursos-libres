@@ -38,15 +38,22 @@ public class CursoServiceImpl implements CursoService {
 
 		CursoRegistroResponseDTO response = new CursoRegistroResponseDTO();
 		response.setCodigoRespuesta("01");
-		response.setMensajeRespuesta("Ok");
+		response.setMensajeRespuesta("Curso Registrado");
 		response.setId(null);
 		return response;
 	}
 
 	@Override
 	public CursoActualizacionResponseDTO actualizarCurso(CursoActualizacionRequestDTO request) {
-		// TODO Auto-generated method stub
-		return null;
+
+		cursoRepository.actualizarCurso(request.getId(), request.getDescripcion(), request.getCosto(),
+				request.getVacantes(), request.getFechaInicio(), request.getFechaFin(), request.getTurno(),
+				request.getLugar(), request.getIdProfesor());
+		
+		CursoActualizacionResponseDTO response = new CursoActualizacionResponseDTO();
+		response.setCodigoRespuesta("01");
+		response.setMensajeRespuesta("Curso Actualizado");
+		return response;
 	}
 
 	@Override
@@ -57,12 +64,12 @@ public class CursoServiceImpl implements CursoService {
 
 	@Override
 	public CursoListadoResponseDTO listarCursos() {
-		
+
 		List<Curso> listado = cursoRepository.findAll();
-		
+
 		List<CursoListarResponseDTO> cursos = new ArrayList<CursoListarResponseDTO>();
 		CursoListarResponseDTO item = null;
-		
+
 		for (Curso c : listado) {
 			item = new CursoListarResponseDTO();
 			item.setId(c.getIdCurso());
@@ -75,7 +82,7 @@ public class CursoServiceImpl implements CursoService {
 			item.setTurno(c.getTurno());
 			cursos.add(item);
 		}
-		
+
 		CursoListadoResponseDTO response = new CursoListadoResponseDTO();
 		response.setCodigoRespuesta("01");
 		response.setMensajeRespuesta("Listado de Cursos");

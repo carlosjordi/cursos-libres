@@ -7,7 +7,9 @@ import com.google.gson.Gson;
 
 import pe.edu.idat.rest.config.BaseTest;
 import pe.edu.idat.rest.transactional.service.CursoService;
+import pe.edu.idat.rest.view.dto.request.CursoActualizacionRequestDTO;
 import pe.edu.idat.rest.view.dto.request.CursoRegistroRequestDTO;
+import pe.edu.idat.rest.view.dto.response.CursoActualizacionResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoListadoResponseDTO;
 import pe.edu.idat.rest.view.dto.response.CursoRegistroResponseDTO;
 
@@ -36,6 +38,23 @@ public class CursoServiceImplTest extends BaseTest {
 	public void listarCursosTest() {
 		
 		CursoListadoResponseDTO response = cursoService.listarCursos();
+		System.out.println(new Gson().toJson(response));
+	}
+	
+	@Test
+	public void actualizarCursoTest() {
+		CursoActualizacionRequestDTO request = new CursoActualizacionRequestDTO();
+		request.setId(1);
+		request.setDescripcion("Curso renovado");
+		request.setCosto(500.00);
+		request.setFechaInicio("2020-01-30");
+		request.setFechaFin("2020-04-20");
+		request.setVacantes(20);
+		request.setTurno(1);
+		request.setLugar("Brazzers");
+		request.setIdProfesor(3);
+		
+		CursoActualizacionResponseDTO response = cursoService.actualizarCurso(request);
 		System.out.println(new Gson().toJson(response));
 	}
 
