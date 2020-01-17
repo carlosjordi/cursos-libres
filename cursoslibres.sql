@@ -35,8 +35,14 @@ CREATE TABLE `alumno` (
 -- Volcado de datos para la tabla `alumno`
 --
 
-INSERT INTO `alumno` (`idAlumno`, `nombres`, `apellidos`, `edad`, `telefono`, `dni`, `correo`, `direccion`, `passAlumno`, `codigoAlumno`, `fechaRegistro`) VALUES
-(1, 'brazton', 'el come gigantes', 11, '987897897', '65498778', 'asbdabs@fas.com', 'dojwahbdiand', 'asdasdn', 'kjhb', '2019-12-20 10:17:09');
+INSERT INTO `alumno` (`idAlumno`, `nombres`, `apellidos`, `edad`, `telefono`, `dni`, `correo`, 
+`direccion`, `passAlumno`, `codigoAlumno`, `fechaRegistro`) VALUES
+(1, 'Brazton', 'el come gigantes', 21, '987897897', '65498778', 'panetonero@contodo.pe', 
+'San German', 'hazmecaso', 'E2065498778', '2019-12-20 10:17:09');
+INSERT INTO `alumno` (`idAlumno`, `nombres`, `apellidos`, `edad`, `telefono`, `dni`, `correo`, 
+`direccion`, `passAlumno`, `codigoAlumno`, `fechaRegistro`) VALUES
+(2, 'Hilser', 'Pacheco D Sal', 22, '987810278', '99966633', 'hazmecaso@please.yara', 
+'Casa de la suegra', 'hazmecaso', 'P2099966633', '2019-12-20 10:17:09');
 
 -- --------------------------------------------------------
 
@@ -62,8 +68,12 @@ CREATE TABLE `curso` (
 -- Volcado de datos para la tabla `curso`
 --
 
-INSERT INTO `curso` (`idCurso`, `idProfesor`, `descripcion`, `costo`, `vacantes`, `vacantesActuales`, `fechaInicio`, `fechaFin`, `turno`, `lugar`, `fechaRegistro`) VALUES
-(1, 3, 'zopi', '12.12', 23, 2, '2019-12-20', '2020-03-19', 1, 'asdadsada', '2019-12-20 12:22:12');
+INSERT INTO `curso` (`idCurso`, `idProfesor`, `descripcion`, `costo`, `vacantes`, 
+`vacantesActuales`, `fechaInicio`, `fechaFin`, `turno`, `lugar`, `fechaRegistro`) VALUES
+(1, 3, 'Android', 449.99, 25, 20, '2020-01-20', '2020-03-19', 1, 'La guarida de Hilser', '2019-12-20 12:22:12');
+INSERT INTO `curso` (`idCurso`, `idProfesor`, `descripcion`, `costo`, `vacantes`, 
+`vacantesActuales`, `fechaInicio`, `fechaFin`, `turno`, `lugar`, `fechaRegistro`) VALUES
+(2, 2, 'Servicios Web', 666.99, 25, 20, '2020-01-30', '2020-03-30', 2, 'El sofa oscuro', '2019-12-20 12:22:12');
 
 -- --------------------------------------------------------
 
@@ -100,9 +110,12 @@ CREATE TABLE `profesor` (
 --
 -- Volcado de datos para la tabla `profesor`
 --
-
 INSERT INTO `profesor` (`idProfesor`, `nombres`, `apellidos`, `codigoProfesor`, `passProfesor`, `dni`, `especialidad`, `anosExperiencia`, `fechaRegistro`) VALUES
-(3, 'zopi', 'zopi', 'zopi', 'zopi', '12345678', 1, 1, '2019-12-20 10:05:16');
+(1, 'Hilser el Romantico', 'El palomo', 'BKEP', 'hilser', '98136238', 1, 1, '2019-12-20 10:05:16');
+INSERT INTO `profesor` (`idProfesor`, `nombres`, `apellidos`, `codigoProfesor`, `passProfesor`, `dni`, `especialidad`, `anosExperiencia`, `fechaRegistro`) VALUES
+(2, 'El roba panetones', 'El palomo', 'BKEP', 'hilser', '90104568', 1, 2, '2019-12-20 10:05:16');
+INSERT INTO `profesor` (`idProfesor`, `nombres`, `apellidos`, `codigoProfesor`, `passProfesor`, `dni`, `especialidad`, `anosExperiencia`, `fechaRegistro`) VALUES
+(3, 'Bratzon Kike', 'El palomo', 'BKEP', 'hilser', '98104568', 1, 1, '2019-12-20 10:05:16');
 
 --
 -- Índices para tablas volcadas
@@ -143,13 +156,13 @@ ALTER TABLE `profesor`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripcion`
