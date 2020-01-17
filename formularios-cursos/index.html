@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="estilo.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="control.js"></script>
+	
+</head>
+
+<body>
+
+<div class="cabeza">
+		<ul class="menu">
+			<li class="submenu"> <a class="link" href="index.html"> Registro de Cursos </a></li>
+			<li class="submenu"> <a class="link" href="ListarCursos.html"> Listar Cursos </a></li>
+			<li class="submenu"> <a class="link" href="ActualizarCurso.html"> Actualizar Cursos </a></li>
+			<li class="submenu"> <a class="link" href="ListaCursoAlumno.html"> Cursos de los Alumnos </a></li>
+
+		</ul>
+	</div>
+	
+
+	<!-- Estructura del paneles del cuerpo -->
+	<div class="contenedor">
+		<nav class="panel_izq">
+			<div class="panel">
+				<h1> </h1>
+				<article>
+					
+				</article>
+			</div>
+		</nav>
+
+		<article class="panel_cent">
+			<div class="panel">
+				<h1> REGISTRO DE CURSOS LIBRES </h1>	
+				
+				
+					<div class="panel">
+						<table class="tabla_formulario">
+							<tr>
+								<td> Descripción </td>
+								<td> <input type="text" id="descripción" placeholder="* Ingrese la descripción del curso"></td>
+							</tr>
+							<tr>
+								<td> Costo </td>
+								<td> <input type="text" id="costo" placeholder="* Ingrese el costo del curso"></td>
+							</tr>
+							<tr>
+								<td> Fecha Inicio </td>
+								<td> <input type="date" id="fechaInicio"></td>
+							</tr>
+							<tr>
+								<td> Fecha Fin </td>
+								<td> <input type="date" id="fechaFin"></td>
+							</tr>
+							<tr>
+								<td> Turno </td>
+								<td> 								
+                                <select class="custom-select" id="turno" >
+                                  <option value="1">MAÑANA</option>
+                                  <option value="2">TARDE</option>
+                                  <option value="3">NOCHE</option>
+                                </select>                           
+								</td>
+							</tr>
+							<tr>
+								<td> Lugar </td>
+								<td> <input type="text" id="lugar" placeholder="* Escriba el lugar del curso" min="0"></td>
+							</tr>
+
+							<tr>
+								<td> Profesor </td>
+								<td> 								
+                                <select class="custom-select" id="profesor" >
+                                  <option value="1">Jose Manuelas</option>
+                                  <option value="2">Hilser Pajerin</option>
+                                  <option value="3">Cachi la bebita</option>
+                                </select>                           
+								</td>
+							</tr>
+							<tr>
+								<td> Vacantes </td>
+								<td> <input type="text" id="vacantes" placeholder="* Ingrese la vacante del curso"></td>
+							</tr>
+							<tr>
+								<td  colspan="2" align="center"> <button class="btn-boton"  onclick="btn_registrar();"> Registrar  </button> </td>
+							</tr>
+						</table>						
+					</div>	
+				</div>
+		</article>
+
+		<aside class="panel_der">
+			<div class="panel">
+				<h1> </h1>
+				<article>
+					
+				</article>
+			</div>			
+		</aside>
+	</div>
+
+</body>
+<footer class="pie">
+
+	<div class="panel_pie">
+		<div class="cont_pie">
+         <h1>  </h1>
+         <article>
+         	
+         </article>
+		</div>
+	</div>
+
+	<div class="panel_pie">
+		<div class="cont_pie">
+         <h1>  </h1>
+         <article>
+         	
+         </article>
+		</div>
+	</div>
+
+	<div class="panel_pie">
+		<div class="cont_pie">
+         <h1></h1>
+         <article>
+         	
+         </article>
+		</div>
+	</div>
+
+	<div class="copy">
+		<h2 align="center">
+			Cursos Libres ° 2020
+		</h2>
+	</div>
+	
+</footer>
+</html>
