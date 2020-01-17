@@ -61,6 +61,7 @@ body
 
 .btn_editar
 {
+	text-align: center;
 	padding: 3%;
 	border:none;
 	background: #04B486;
@@ -150,6 +151,8 @@ body
    width: 100%;
    height: 50px;
    background: #1a5276;
+
+
 }
 .menu
 {   width: 100%;
@@ -163,7 +166,7 @@ body
 .submenu{
 	list-style: none;
 	padding: 1%;
-	float: left;
+	float: right;
 	background: #2874a6;
 	text-align: center;
 	transition: 0.5s;
@@ -184,4 +187,6 @@ body
 	font-size: 18px;
 }
 
-
+.central{
+	text-align: center;
+}
